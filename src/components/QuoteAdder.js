@@ -3,30 +3,38 @@ import React from 'react';
 class QuoteAdder extends React.Component {
   state = {
     text: '',
-    author: ''
+    author: '',
+    showMsg: false
   };
 
   render() {
-    const { text, author } = this.state;
+    const { text, author, showMsg } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor='text'>New Quote: </label>
-        <input
-          id='text'
-          type='text'
-          value={text}
-          onChange={this.handleChange}
-        />
-        <label htmlFor='author'>Author: </label>
-        <input
-          id='author'
-          type='text'
-          value={author}
-          onChange={this.handleChange}
-        />
-        <button type='submit'>Sumbit</button>
-      </form>
+      <section>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor='text'>New Quote: </label>
+            <input
+              id='text'
+              type='text'
+              value={text}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor='author'>Author: </label>
+            <input
+              id='author'
+              type='text'
+              value={author}
+              onChange={this.handleChange}
+            />
+          </div>
+          <button type='submit'>Sumbit</button>
+        </form>
+        {showMsg ? <p>Thanks for adding a quote!</p> : null}
+      </section>
     );
   }
 
@@ -38,7 +46,8 @@ class QuoteAdder extends React.Component {
     addQuote(newQuote);
     this.setState({
       text: '',
-      author: ''
+      author: '',
+      showMsg: true
     });
   };
 
